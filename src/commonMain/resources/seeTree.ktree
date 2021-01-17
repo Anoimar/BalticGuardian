@@ -1,0 +1,5 @@
+<ktree width="1024.0" height="768.0" gridWidth="32" gridHeight="32">
+	<solidrect name="surfaceLevel" colorMul="#79e9ffff" width="1024.0" height="96.0"/>
+	<solidrect name="seeLevel" colorMul="#3a3dffff" y="96.0" width="1024.0" height="672.0"/>
+	<image name="base" x="480.0" y="32.0" width="98.0" height="97.0" sourceFile="base.png"/>
+</ktree>
