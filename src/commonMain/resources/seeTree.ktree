@@ -2,4 +2,6 @@
 	<solidrect name="surfaceLevel" colorMul="#79e9ffff" width="1024.0" height="96.0"/>
 	<solidrect name="seeLevel" colorMul="#3a3dffff" y="96.0" width="1024.0" height="672.0"/>
 	<image name="base" x="480.0" y="32.0" width="98.0" height="97.0" sourceFile="base.png"/>
+	<text name="scoreText" colorMul="#f92fffef" x="836.0" y="22.0" scaleY="1.4246956521739131" autoScaling="true" text="Score: 0" fontSource="SourceSansPro-Bold.ttf" textSize="20.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
+	<text name="codeLeftText" colorMul="#f92effff" x="836.0" y="52.0" scaleY="1.4246956521739131" autoScaling="true" text="Code left:" fontSource="SourceSansPro-Bold.ttf" textSize="20.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
 </ktree>

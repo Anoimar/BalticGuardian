@@ -1,45 +1,28 @@
-import com.soywiz.klock.TimeSpan
 import com.soywiz.korge.*
-import com.soywiz.korge.input.mouse
-import com.soywiz.korge.view.*
-import com.soywiz.korge.view.ktree.readKTree
+import com.soywiz.korge.scene.Module
+import com.soywiz.korge.scene.Scene
 import com.soywiz.korim.color.Colors
-import com.soywiz.korim.format.*
-import com.soywiz.korio.async.launchImmediately
-import com.soywiz.korio.file.std.*
-
-var seeTopY = 0.0
-const val seeBottomY = 768
-val cellSize = 32
+import com.soywiz.korinject.AsyncInjector
+import com.soywiz.korma.geom.SizeInt
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlin.reflect.KClass
 
 
-suspend fun main() = Korge(width = 1024, height = 768, bgcolor = Colors["#2b2b2b"]) {
+@ExperimentalCoroutinesApi
+suspend fun main() = Korge(Korge.Config(module = ConfigModule))
 
-    val mainTree = resourcesVfs["seeTree.kTree"].readKTree(views)
-    addChild(mainTree)
-    with(mainTree["seeLevel"]) {
-        seeTopY = first.y
-    }
+object ConfigModule: Module() {
+    override val bgcolor = Colors["#2b2b2b"]
+    override val size = SizeInt(1024, 768)
+    override val mainScene : KClass<out Scene> = StartScene::class
 
-    val base = mainTree["base"].first
-    base.mouse {
-        click{
-
+    override suspend fun AsyncInjector.configure(){
+        mapPrototype {
+            StartScene()
         }
-    }
-    addFishEnemy(this)
-
-}
-
-suspend fun addFishEnemy(stage: Stage) {
-    val enemySpriteMap = resourcesVfs["fish_big.png"].readBitmap()
-    val fishMargin = 12.5
-    with(Enemy(enemySpriteMap)) {
-        create().apply {
-            y = seeTopY + fishMargin + 4 * 64
-            stage.addChild(this)
+        mapPrototype {
+            GameScene()
         }
-        swim()
     }
 }
 

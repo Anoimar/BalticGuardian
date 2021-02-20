@@ -1,0 +1,7 @@
+<ktree width="1024.0" height="768.0" gridWidth="32" gridHeight="32">
+	<solidrect name="background" colorMul="#79e9ffff" x="-32.0" y="-32.0" width="1024.0" height="768.0"/>
+	<text name="titleText" colorMul="#3d23ffff" x="416.0" y="32.0" scaleY="2.0" autoScaling="true" text="Baltic Guardian" fontSource="SourceSansPro-Bold.ttf" textSize="32.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
+	<text name="startText" colorMul="#226028ff" x="448.0" y="148.0" scaleY="2.0" autoScaling="true" text="START" fontSource="SourceSansPro-Bold.ttf" textSize="32.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
+	<text name="storyText" colorMul="#ffcc44ff" x="448.0" y="256.0" scaleY="2.0" autoScaling="true" text="STORY" fontSource="SourceSansPro-Bold.ttf" textSize="32.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
+	<text name="creditsText" colorMul="#ff0e0bff" x="448.0" y="364.0" scaleY="2.0" autoScaling="true" text="CREDITS" fontSource="SourceSansPro-Bold.ttf" textSize="32.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
+</ktree>
