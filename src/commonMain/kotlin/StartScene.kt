@@ -12,5 +12,8 @@ class StartScene: Scene(){
         mainTree["startText"].first.onClick {
             sceneContainer.changeTo<GameScene>()
         }
+        mainTree["creditsText"].first.onClick {
+            sceneContainer.changeTo<CreditsScene>()
+        }
     }
 }

@@ -1,0 +1,16 @@
+<ktree width="1024.0" height="768.0" gridWidth="32" gridHeight="32">
+	<solidrect name="background" width="1024.0" height="768.0"/>
+	<text colorMul="#ff7400ff" x="384.0" y="64.0" scaleX="1.2100677637947723" autoScaling="true" text="Credits" fontSource="SourceSansPro-Bold.ttf" textSize="70.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
+	<text colorMul="#55007aff" x="160.0" y="160.0" autoScaling="true" text="This place is so I can say thank you to
+	 people who provide free assets for our projects:
+
+	 Most of artwork created by Luis Zuno @ansimuz
+	 The base/spaceship
+	 taken from Kenney Vleugels (www.kenney.nl)
+	 Both of them have prepared awesome assets 
+	 so if you need some stuff
+	 for a serious project look for their works.
+	 FONTS:
+	 https://fonts.google.com/specimen/Source+Sans+Pro" fontSource="SourceSansPro-Bold.ttf" textSize="32.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
+	<uitextbutton name="backButton" colorMul="#30db3eff" x="352.0" y="672.0" text="" textSize="32.0" width="352.0" height="65.0"/>
+</ktree>

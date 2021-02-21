@@ -1,5 +1,5 @@
 import com.soywiz.klock.TimeSpan
-import com.soywiz.korge.input.mouse
+import com.soywiz.korge.input.onClick
 import com.soywiz.korge.scene.Scene
 import com.soywiz.korge.time.delay
 import com.soywiz.korge.view.*
@@ -15,7 +15,6 @@ import kotlin.random.Random
 
 class GameScene : Scene() {
 
-    var playing = false
     val mines: MutableList<Image> = mutableListOf()
     var score = 0
     val busyRows = mutableListOf<Int>()
@@ -26,7 +25,7 @@ class GameScene : Scene() {
 
     override suspend fun Container.sceneInit() {
             var loadingMine = false
-            var codeInBaltic = 5
+            var codeInBaltic = 10
             val mainTree = resourcesVfs["seeTree.kTree"].readKTree(views)
             addChild(mainTree)
             with(mainTree["seeLevel"]) {
@@ -37,26 +36,24 @@ class GameScene : Scene() {
                 it.text = "Code left: $codeInBaltic"
             }
 
-            //create player base
-            val mineBitmap = resourcesVfs["mine_big.png"].readBitmap()
-            val base = mainTree["base"].first
-            base.mouse {
-                click {
-                    if(!loadingMine) {
-                        launch {
-                            val mine = Mine(base.getCenterX(), base.getEndY(), mineBitmap)
-                            mine.drop(mines).let {
-                                stage?.addChild(
-                                    it
-                                )
-                            }
-                            loadingMine = true
-                            delay(TimeSpan(1000.0))
-                            loadingMine = false
-                        }
+        //create player base
+        val mineBitmap = resourcesVfs["mine_big.png"].readBitmap()
+        val base = mainTree["base"].first
+        base.onClick {
+            if (!loadingMine) {
+                launch {
+                    val mine = Mine(base.getCenterX(), base.getEndY(), mineBitmap)
+                    mine.drop(mines).let {
+                        stage?.addChild(
+                            it
+                        )
                     }
+                    loadingMine = true
+                    delay(TimeSpan(1000.0))
+                    loadingMine = false
                 }
             }
+        }
 
             launch {
                 hitChannel.consumeEach {
@@ -69,7 +66,7 @@ class GameScene : Scene() {
                 escapedChannel.consumeEach {
                     codeInBaltic--
                     if(codeInBaltic < 1) {
-                        print("Game over")
+
                     } else if (codeInBaltic == 1) {
                         codeLeftText.color = Colors.RED
                     }
@@ -96,12 +93,12 @@ class GameScene : Scene() {
         }
 
 
-        fun Stage.removeEnemy(enemy: View, enemyPos: Int) {
+        private fun Stage.removeEnemy(enemy: View, enemyPos: Int) {
             removeChild(enemy)
             busyRows.remove(enemyPos)
         }
 
-        suspend fun addFishEnemy(stage: Stage) {
+        private suspend fun addFishEnemy(stage: Stage) {
             val enemySpriteMap = resourcesVfs["fish_big.png"].readBitmap()
             val fishMargin = 12.5
             with(Enemy(enemySpriteMap)) {
@@ -131,10 +128,8 @@ class GameScene : Scene() {
                         if (x > stage.getEndX() + this.width) {
                             stage.removeEnemy(this, enemyPos)
                             GlobalScope.launch {
-                                print("escaped")
                                 escapedChannel.send(1)
                                 addFishEnemy(stage)
-                                print("escaped2")
                             }
                         }
                     }

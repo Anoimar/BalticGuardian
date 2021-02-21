@@ -23,6 +23,9 @@ object ConfigModule: Module() {
         mapPrototype {
             GameScene()
         }
+        mapPrototype {
+            CreditsScene()
+        }
     }
 }
 
