@@ -1,0 +1,13 @@
+<ktree width="1024.0" height="768.0" gridWidth="32" gridHeight="32">
+	<solidrect name="background" colorMul="#000000ff" width="1024.0" height="768.0"/>
+	<text colorMul="#ffcc44de" alpha="0.8705882352941177" x="80.0" y="32.0" autoScaling="true" text="Year is 2021.Cod numbers in Baltic is failing drastically every year.
+	EU blame mostly one country Poland. Even if only few
+	Polish fisherman fish for cod on their own waters.
+	After long studies Polish researchers discover real reason.
+Space Fish invasion.
+To make sure that Janusz and Grazyna can
+have his cod in Ustka a special task force is created
+Baltic Defender.
+Welcome Commander. " fontSource="SourceSansPro-Bold.ttf" textSize="32.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
+	<text name="okButton" colorMul="#30db3eff" x="384.0" y="544.0" scaleX="2" scaleY="2" autoScaling="true" text="START" textSize="32.0" verticalAlign="TOP" horizontalAlign="LEFT"/>
+</ktree>

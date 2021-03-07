@@ -26,6 +26,9 @@ object ConfigModule: Module() {
         mapPrototype {
             CreditsScene()
         }
+        mapPrototype {
+            StoryScene()
+        }
     }
 }
 
