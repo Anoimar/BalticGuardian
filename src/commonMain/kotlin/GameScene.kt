@@ -114,15 +114,15 @@ class GameScene : Scene() {
                 onCollision({ mines.contains(it) }) {
                     if (alive) {
                         score++
-                        GlobalScope.launch {
+                        stage.launch {
+                            hitSound?.play()
                             hitChannel.send(1)
                         }
-                        hitSound?.play()
                         fish.hit()
                         addUpdater {
                             if (y > stage.getEndY() + this.height) {
                                 stage.removeEnemy(this, enemyPos)
-                                GlobalScope.launch {
+                                stage.launch {
                                     addFishEnemy(stage)
                                 }
                             }
