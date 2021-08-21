@@ -29,6 +29,9 @@ object ConfigModule: Module() {
         mapPrototype {
             StoryScene()
         }
+        mapPrototype {
+            EndScene(get())
+        }
     }
 }
 

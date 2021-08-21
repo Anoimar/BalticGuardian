@@ -1,0 +1,6 @@
+<ktree width="1024.0" height="768.0" gridWidth="32" gridHeight="32">
+	<solidrect name="background" colorMul="#55007aff" width="1024.0" height="768.0"/>
+	<text colorMul="#ff31eeff" x="512.0" y="64.0" scaleX="1.2100677637947723" autoScaling="true" text="Game Over" fontSource="SourceSansPro-Bold.ttf" textSize="70.0" verticalAlign="TOP" horizontalAlign="CENTER"/>
+	<text name="resultText" colorMul="#ff0e1aff" x="512.0" y="208.0" autoScaling="true" text="Enemies killed: 0" fontSource="SourceSansPro-Bold.ttf" textSize="60.0" verticalAlign="TOP" horizontalAlign="CENTER"/>
+	<uibutton name="restartButton" colorMul="#ff0e1aff" x="396.5" y="452.0" text="RESTART" textSize="16.0" width="256.0" height="64.0"/>
+</ktree>

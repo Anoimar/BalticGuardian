@@ -10,7 +10,7 @@ import com.soywiz.korim.format.*
 import com.soywiz.korio.async.launch
 import com.soywiz.korio.file.std.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.*
 import kotlin.random.Random
 
@@ -18,6 +18,7 @@ class GameScene : Scene() {
 
     private val mines: MutableList<Image> = mutableListOf()
     var score = 0
+    var codeInBaltic = 10
     private val busyRows = mutableListOf<Int>()
 
     @ExperimentalCoroutinesApi
@@ -27,7 +28,6 @@ class GameScene : Scene() {
 
     override suspend fun Container.sceneInit() {
         var loadingMine = false
-        var codeInBaltic = 10
         val mainTree = resourcesVfs["seeTree.kTree"].readKTree(views)
         hitSound = resourcesVfs["sounds/hit.wav"].readSoundIfExists()
 
@@ -70,7 +70,11 @@ class GameScene : Scene() {
             escapedChannel.consumeEach {
                 codeInBaltic--
                 if (codeInBaltic < 1) {
-
+                    delay(TimeSpan(1000.0))
+                    codeLeftText.text = "Code left: Extinct!"
+                    delay(TimeSpan(3000.0))
+                    sceneContainer.changeTo<EndScene>(score)
+                    cancel()
                 } else if (codeInBaltic == 1) {
                     codeLeftText.color = Colors.RED
                 }
@@ -80,8 +84,8 @@ class GameScene : Scene() {
             }
         }
         //start game
-        var job = launch {
-            while (busyRows.size < 4) {
+          stage?.launch {
+            while (busyRows.size < 4 && codeInBaltic > 0) {
                 stage?.let {
                     addFishEnemy(it)
                     delay(TimeSpan(3000.0))
@@ -126,13 +130,19 @@ class GameScene : Scene() {
                                     addFishEnemy(stage)
                                 }
                             }
+                            if(codeInBaltic < 1) {
+                                stage.launch {
+                                    delay(TimeSpan(500.00))
+                                    stage.removeChild(this)
+                                }
+                            }
                         }
                     }
                 }
                 addUpdater {
                     if (x > stage.getEndX() + this.width) {
                         stage.removeEnemy(this, enemyPos)
-                        GlobalScope.launch {
+                        stage.launch {
                             escapedChannel.send(1)
                             addFishEnemy(stage)
                         }
